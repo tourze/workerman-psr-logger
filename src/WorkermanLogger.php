@@ -61,7 +61,7 @@ class WorkermanLogger implements LoggerInterface
     public function log($level, \Stringable|string $message, array $context = []): void
     {
         // 如果没启动，我们不记录
-        if (Worker::getStatus() === Worker::STATUS_INITIAL) {
+        if (!Worker::isRunning()) {
             return;
         }
         Worker::log(self::format($level, $message, $context));
