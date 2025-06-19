@@ -11,7 +11,7 @@ class LogUtil
 
     public static function init(): void
     {
-        if (!self::$dumper) {
+        if (null === self::$dumper) {
             self::$dumper = new Hexdump();
         }
     }
@@ -38,7 +38,7 @@ class LogUtil
 
     public static function error(string $message, ?\Throwable $e = null): void
     {
-        if ($e) {
+        if (null !== $e) {
             Worker::log(sprintf("[ERROR] %s: %s\n%s", $message, $e->getMessage(), $e->getTraceAsString()));
         } else {
             Worker::log(sprintf("[ERROR] %s", $message));

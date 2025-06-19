@@ -10,11 +10,9 @@ use Tourze\Workerman\PsrLogger\WorkermanLogger;
  */
 class WorkermanLoggerTest extends TestCase
 {
-    private WorkermanLogger $logger;
-
     protected function setUp(): void
     {
-        $this->logger = new WorkermanLogger();
+        // No setup needed for current tests
     }
 
     /**
@@ -52,7 +50,6 @@ class WorkermanLoggerTest extends TestCase
         $mockLogger = new class extends WorkermanLogger {
             public bool $isRunningResult = true;
             public string $lastFormattedLog = '';
-            private string $latestFormattedLog = '';
 
             // 重写format方法为公共方法，因为原方法是私有的
             public static function formatLog(string $level, \Stringable|string $message, array $context = []): string
