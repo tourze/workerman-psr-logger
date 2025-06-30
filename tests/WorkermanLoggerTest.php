@@ -140,7 +140,8 @@ class WorkermanLoggerTest extends TestCase
             $message = "Test {$method} message";
             $context = ['method' => $method];
 
-            $mockLogger->$method($message, $context);
+            // 使用call_user_func避免动态方法调用的PHPStan警告
+            call_user_func([$mockLogger, $method], $message, $context);
 
             $lastCall = end($mockLogger->logCalls);
             $this->assertEquals($expectedLevel, $lastCall['level']);
